@@ -2,7 +2,7 @@ DEPTH = 5
 
 def load_wordlist(filename="wordlist.txt"):
     with open(filename) as f:
-        return [word.strip() for word in f.readlines()]
+        return [word.strip().lower() for word in f.readlines()]
 
 def is_valid_word(word, wordlist): # binary search
     lo, hi = 0, len(wordlist) - 1
@@ -75,7 +75,7 @@ def make_move(current_string, letter, position):
 
 def play_game(wordlist):
     player_first = input("Do you want to go first? (yes/no): ").strip().lower().startswith('y')
-    current_string = "pe" if not player_first else input("Enter the initial 2 letters: ")
+    current_string = "pe" if not player_first else input("Enter the initial 2 letters (words allowed): ")
     if not player_first:
         print("AI chose the initial string \"pe\"")
 
@@ -86,7 +86,7 @@ def play_game(wordlist):
             print("Challenge from AI: no words can be created from this string. AI wins!")
             return
         
-        if is_valid_word(current_string, wordlist):
+        if is_valid_word(current_string, wordlist) and len(current_string) > 2:
             if player_turn:
                 print("AI created a word. Player wins!")
             else:
