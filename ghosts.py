@@ -134,3 +134,4 @@ while True:
     play_game(wordlist)
     if input("Play again? (yes/no): ").strip().lower().startswith('n'):
         break
+    print()
