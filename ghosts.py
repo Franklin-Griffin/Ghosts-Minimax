@@ -1,3 +1,6 @@
+from json import load
+from random import choice
+
 def load_wordlist(filename="wordlist.txt"):
     with open(filename) as f:
         return [word.strip().lower() for word in f.readlines()]
@@ -85,9 +88,16 @@ def minimax(current_string, alpha, beta, is_maximizing_player, wordlist, filtere
 
 def play_game(wordlist):
     player_first = input("Do you want to go first? (yes/no): ").strip().lower().startswith('y')
-    current_string = "pe" if not player_first else input("Enter the initial 2 letters (words allowed): ")
-    if not player_first:
-        print("AI chose the initial string \"pe\"")
+    current_string = ""
+    if player_first:
+        current_string = input("Enter the initial 2 letters (words allowed): ")
+    else:
+        with open("./comboutility.json", "r") as f:
+            comboutility = load(f)
+
+        current_string = choice(comboutility["winning"])
+
+        print(f"AI chose the initial string \"{current_string}\"")
 
     player_turn = not player_first
 
