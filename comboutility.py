@@ -8,7 +8,7 @@ losing_combinations = []
 for letter1 in 'abcdefghijklmnopqrstuvwxyz':
     for letter2 in 'abcdefghijklmnopqrstuvwxyz':
         util = minimax(letter1 + letter2, float('-inf'), float('inf'), True, wordlist)[0]
-        if util == 1:
+        if util == -1:
             print(letter1 + letter2 + " is a winning starting combination")
             winning_combinations.append(letter1 + letter2)
         else:
