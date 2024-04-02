@@ -132,8 +132,6 @@ def play_game(wordlist):
         player_turn = not player_turn
 
 wordlist = load_wordlist()
-#for letter in 'abcdefghijklmnopqrstuvwxyz':
-#    print(minimax(letter, float('-inf'), float('inf'), True, wordlist))
 while True:
     play_game(wordlist)
     if input("Play again? (yes/no): ").strip().lower().startswith('n'):
