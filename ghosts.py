@@ -94,9 +94,7 @@ def play_game(wordlist):
     else:
         with open("./comboutility.json", "r") as f:
             comboutility = load(f)
-
         current_string = choice(comboutility["winning"])
-
         print(f"AI chose the initial string \"{current_string}\"")
 
     player_turn = not player_first
