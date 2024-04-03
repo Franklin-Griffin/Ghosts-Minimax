@@ -1,18 +1,15 @@
 from json import load
-from random import choice, random
+from random import choice
 from minimax import leads_to_word, is_valid_word, make_move, minimax, load_wordlist
 
 def play_game(wordlist):
-    A_turn = random() >= 0.5 # rand float
+    A_turn = True
 
     with open("./comboutility.json", "r") as f:
         comboutility = load(f)
     current_string = choice(comboutility["winning"])
 
-    if A_turn:
-        print(f"AI A chose the initial string \"{current_string}\"")
-    else:
-        print(f"AI B chose the initial string \"{current_string}\"")
+    print(f"AI A chose the initial string \"{current_string}\"")
 
     A_turn = not A_turn
 
