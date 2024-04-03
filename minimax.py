@@ -43,12 +43,13 @@ def word_continuation(word, wordlist):
 def minimax(current_string, alpha, beta, is_maximizing_player, wordlist, filtered_wordlist=None): # returns eval, (letter, position)
     if filtered_wordlist is None:
         filtered_wordlist = filter_wordlist(current_string, wordlist)
+    # Longer games are better as the opponent has more chances to make a mistake
     if is_valid_word(current_string, filtered_wordlist) and len(current_string) > 2:
-        return (1, "") if is_maximizing_player else (-1, "")
+        return (1 - (len(current_string) * 0.01), "") if is_maximizing_player else (-1 + (len(current_string) * 0.01), "")
     # push AI to winning honorably and elongate the game by creating a word,
     # rather than giving up and playing "a" front
     if not filtered_wordlist:
-        return (2, "") if is_maximizing_player else (-2, "") # no continuations possible
+        return (2 - (len(current_string) * 0.01), "") if is_maximizing_player else (-2 + (len(current_string) * 0.01), "") # no continuations possible
 
     if is_maximizing_player:
         max_eval = float('-inf')
