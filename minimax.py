@@ -57,7 +57,7 @@ def minimax(current_string, alpha, beta, is_maximizing_player, wordlist, filtere
                 if eval > max_eval:
                     max_eval = eval
                     best_move = (letter, position)
-                    if eval == 1: # best case scenario
+                    if eval == 2: # best case scenario
                         return eval, best_move
                 alpha = max(alpha, eval)
                 if beta <= alpha:
@@ -76,7 +76,7 @@ def minimax(current_string, alpha, beta, is_maximizing_player, wordlist, filtere
                 if eval < min_eval:
                     min_eval = eval
                     best_move = (letter, position)
-                    if eval == -1: # best case scenario
+                    if eval == -2: # best case scenario
                         return eval, best_move
                 beta = min(beta, eval)
                 if beta <= alpha:
