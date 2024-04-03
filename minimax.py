@@ -35,10 +35,11 @@ def leads_to_word(word, wordlist):
     return False
 
 def word_continuation(word, wordlist):
+    best = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     for i in wordlist:
-        if word in i:
-            return i
-    return False
+        if len(i) < len(best) and word in i:
+            best = i
+    return best
 
 def minimax(current_string, alpha, beta, is_maximizing_player, wordlist, filtered_wordlist=None): # returns eval, (letter, position)
     if filtered_wordlist is None:
