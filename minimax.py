@@ -1,3 +1,7 @@
+from random import sample
+
+ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
 def load_wordlist(filename="wordlist.txt"):
     with open(filename) as f:
         return [word.strip().lower() for word in f.readlines()]
@@ -49,7 +53,7 @@ def minimax(current_string, alpha, beta, is_maximizing_player, wordlist, filtere
     if is_maximizing_player:
         max_eval = float('-inf')
         best_move = None
-        for letter in 'abcdefghijklmnopqrstuvwxyz':
+        for letter in "".join(sample(ALPHABET, len(ALPHABET))):
             for position in ['start', 'end']:
                 new_string = make_move(current_string, letter, position)
                 new_filtered_wordlist = update_wordlist(new_string, filtered_wordlist)
@@ -68,7 +72,7 @@ def minimax(current_string, alpha, beta, is_maximizing_player, wordlist, filtere
     else:
         min_eval = float('inf')
         best_move = None
-        for letter in 'abcdefghijklmnopqrstuvwxyz':
+        for letter in "".join(sample(ALPHABET, len(ALPHABET))):
             for position in ['start', 'end']:
                 new_string = make_move(current_string, letter, position)
                 new_filtered_wordlist = update_wordlist(new_string, filtered_wordlist)
